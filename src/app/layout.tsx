@@ -6,6 +6,9 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
+import { RoseCursor } from "@/components/motion/RoseCursor";
 import { floristJsonLd, ogImage } from "@/lib/seo";
 import "./globals.css";
 
@@ -75,12 +78,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-wine focus:px-5 focus:py-3 focus:text-ivory">
           Skip to content
         </a>
+        <ScrollProgress />
         <CartProvider>
           <Header />
           <main id="main">{children}</main>
           <Footer />
           <CartDrawer />
         </CartProvider>
+        <SmoothScroll />
+        <RoseCursor />
         <JsonLd data={floristJsonLd()} />
       </body>
     </html>

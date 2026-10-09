@@ -4,6 +4,7 @@ import type { Product } from "@/types";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 import { basePrice } from "@/lib/filters";
+import { TiltCard } from "@/components/motion/TiltCard";
 
 export function ProductCard({
   product,
@@ -19,13 +20,13 @@ export function ProductCard({
   const [cover] = product.images;
   const hasRange = product.sizes.length > 1;
   return (
-    <article className={cn("group relative", className)}>
-      <div className={cn("img-zoom relative aspect-[4/5] overflow-hidden bg-cream", shape === "arch" ? "arch-soft" : "rounded-[var(--radius-card)]")}>
+    <article className={cn("group relative", className)} data-tilt-root>
+      <TiltCard className={cn("img-zoom aspect-[4/5] overflow-hidden bg-cream", shape === "arch" ? "arch-soft" : "rounded-[var(--radius-card)]")}>
         {cover ? <Image src={cover.src} alt={cover.alt} fill sizes={sizes} quality={75} className="object-cover" /> : null}
         {product.badge ? (
           <span className="eyebrow absolute left-1/2 top-5 -translate-x-1/2 whitespace-nowrap rounded-full bg-ivory/90 px-3 py-1.5 text-[0.625rem] text-wine">{product.badge}</span>
         ) : null}
-      </div>
+      </TiltCard>
       <div className="mt-5 text-center">
         <h3 className="font-display text-2xl leading-tight text-wine">
           <Link href={`/shop/${product.slug}`} className="after:absolute after:inset-0 after:content-['']">

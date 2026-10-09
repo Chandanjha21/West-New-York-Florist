@@ -5,6 +5,9 @@ import { ArchOutline, Sprig } from "@/components/ui/Botanicals";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow, Script } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { CountUp } from "@/components/motion/CountUp";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { Parallax, ScrollZoom } from "@/components/motion/Parallax";
 
 export function StudioIntro() {
   return (
@@ -13,13 +16,15 @@ export function StudioIntro() {
         <Reveal className="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none">
           <ArchOutline className="absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)] text-gold" />
           <div className="relative aspect-[3/4] overflow-hidden arch">
-            <Image src={images.floristWindow.src} alt={images.floristWindow.alt} fill sizes="(min-width:1024px) 38vw, 90vw" className="object-cover" />
+            <ScrollZoom>
+              <Image src={images.floristWindow.src} alt={images.floristWindow.alt} fill sizes="(min-width:1024px) 38vw, 90vw" className="object-cover" />
+            </ScrollZoom>
           </div>
-          <div className="absolute -bottom-10 -right-4 hidden w-44 overflow-hidden rounded-[1.25rem] shadow-soft ring-8 ring-ivory sm:block md:-right-10 md:w-52">
-            <div className="relative aspect-square">
+          <Parallax offset={50} className="absolute -bottom-10 -right-4 hidden w-44 sm:block md:-right-10 md:w-52">
+            <div className="relative aspect-square overflow-hidden rounded-[1.25rem] shadow-soft ring-8 ring-ivory">
               <Image src={images.floristHands.src} alt={images.floristHands.alt} fill sizes="208px" className="object-cover" />
             </div>
-          </div>
+          </Parallax>
         </Reveal>
 
         <div className="relative lg:col-span-6 lg:col-start-7">
@@ -46,13 +51,15 @@ export function StudioIntro() {
               [`${site.reviews.rating}★`, `${site.reviews.count} ${site.reviews.source} reviews`],
             ].map(([n, l]) => (
               <div key={l}>
-                <p className="font-display text-4xl text-wine">{n}</p>
+                <p className="font-display text-4xl text-wine"><CountUp value={n} from={Number.parseFloat(n) > 1000 ? 1900 : 0} /></p>
                 <p className="mt-1 text-sm text-muted">{l}</p>
               </div>
             ))}
           </Reveal>
           <Reveal delay={260} className="mt-10">
-            <ButtonLink href="/about" variant="outline">Our story</ButtonLink>
+            <Magnetic>
+              <ButtonLink href="/about" variant="outline">Our story</ButtonLink>
+            </Magnetic>
           </Reveal>
         </div>
       </div>

@@ -13,6 +13,7 @@ import { GalleryStrip } from "@/components/home/GalleryStrip";
 import { VideoStories } from "@/components/home/VideoStories";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ButtonLink } from "@/components/ui/Button";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { SectionHeading, Script } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
@@ -42,7 +43,9 @@ export default async function HomePage() {
             title={<span id="featured-title">Customer <Script>favorites</Script></span>}
             intro="Our newest arrangements and best sellers, made to order in the shop with same-day delivery available."
           />
-          <ButtonLink href="/shop" variant="outline" className="shrink-0 self-start md:self-auto">Shop all flowers</ButtonLink>
+          <Magnetic className="shrink-0 self-start md:self-auto">
+            <ButtonLink href="/shop" variant="outline">Shop all flowers</ButtonLink>
+          </Magnetic>
         </div>
         <div className="mt-10">
           <FeaturedCarousel products={featured} />
